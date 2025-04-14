@@ -1,14 +1,4 @@
-// const mongoose = require('mongoose')
-
-// const productSchema = new mongoose.Schema({
-//     name: String,
-//     quantity: Number,
-//     price: Number
-// })
-
-// const ProductModel = mongoose.model('Products', productSchema, 'Products')
-// module.exports = ProductModel
-// const mongoose = require('mongoose')
+const mongoose = require('mongoose')
 
 const productSchema = new mongoose.Schema({
     name: {
@@ -28,5 +18,8 @@ const productSchema = new mongoose.Schema({
         default: ''
     }
 }, {
-    timestamps: true // Adds createdAt and updatedAt fields automatically
+    timestamps: true
 })
+
+const ProductModel = mongoose.model('Products', productSchema, 'Products')
+module.exports = ProductModel
