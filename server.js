@@ -10,7 +10,7 @@ app.use(cors())
 app.use(express.json())
 
 //DB Connection
-mongoose.connect('mongodb+srv://paul:123>@cluster0.nsuyksf.mongodb.net/inventory')
+mongoose.connect('mongodb+srv://paul:123@cluster0.mongodb.net/inventory?retryWrites=true&w=majority')
 .then(() => console.log('DB connected'))
 .catch(err => console.log(err))
 
