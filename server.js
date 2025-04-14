@@ -10,7 +10,7 @@ app.use(cors())
 app.use(express.json())
 
 //DB Connection
-mongoose.connect('mongodb+srv://paul:123@cluster0.mongodb.net/inventory?retryWrites=true&w=majority')
+mongoose.connect('mongodb://paul:123@ac-1joemgn-shard-00-00.nsuyksf.mongodb.net:27017,ac-1joemgn-shard-00-01.nsuyksf.mongodb.net:27017,ac-1joemgn-shard-00-02.nsuyksf.mongodb.net:27017/?replicaSet=atlas-gmgtj7-shard-0&ssl=true&authSource=admin')
 .then(() => console.log('DB connected'))
 .catch(err => console.log(err))
 
