@@ -10,9 +10,19 @@ app.use(cors())
 app.use(express.json())
 
 //DB Connection
-mongoose.connect('mongodb+srv://paul:123@cluster0.nsuyksf.mongodb.net/?appName=Cluster0')
-.then(() => console.log('DB connected'))
-.catch(err => console.log(err))
+// mongoose.connect('mongodb+srv://paul:123@cluster0.nsuyksf.mongodb.net/?appName=Cluster0')
+// .then(() => console.log('DB connected'))
+// .catch(err => console.log(err))
+
+mongoose.connect('mongodb+srv://paul:123@ac-1joemgn.nsuyksf.mongodb.net/inventory?retryWrites=true&w=majority')
+  .then(() => console.log('DB connected'))
+  .catch(err => console.log('MongoDB connection error:', err));
+
+// Add this to see which database you're actually connecting to
+mongoose.connection.on('connected', () => {
+  console.log('Connected to database:', mongoose.connection.db.databaseName);
+});
+
 
 //Register API Route
 app.post('/register',(req,res)=>{
