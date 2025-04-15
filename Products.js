@@ -12,11 +12,8 @@ const productSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true
-    },
-    description: {
-        type: String,
-        default: ''
     }
+
 }, {
     timestamps: true // Adds createdAt and updatedAt fields automatically
 })
