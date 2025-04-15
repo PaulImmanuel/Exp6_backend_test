@@ -2,38 +2,52 @@ const express = require('express')
 const cors = require('cors')
 
 const UserModel = require('./User')
-const ProductModel = require('./Products')  //Add a Product Model
+const ProductModel = require('./Products')
 const mongoose = require('mongoose')
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 
-//DB Connection
-mongoose.connect('mongodb+srv://paul:123@cluster0.nsuyksf.mongodb.net/inventory')
-.then(() => console.log('DB connected'))
-.catch(err => console.log(err))
+// Updated connection string with explicit database name
+mongoose.connect('mongodb+srv://paul:123@ac-1joemgn.nsuyksf.mongodb.net/inventory?retryWrites=true&w=majority')
+  .then(async () => {
+    console.log('DB connected to database:', mongoose.connection.db.databaseName);
+    
+    // Create a test product to verify database operations
+    try {
+      const testProduct = await ProductModel.create({
+        name: "Test Product",
+        quantity: 10,
+        price: 9.99,
+        description: "Test product to verify database connection"
+      });
+      console.log('Test product created:', testProduct);
+
+      // Verify we can read the product back
+      const products = await ProductModel.find();
+      console.log('All products in database:', products);
+    } catch (err) {
+      console.log('Error creating test product:', err);
+    }
+  })
+  .catch(err => console.log('MongoDB connection error:', err));
 
 //Register API Route
 app.post('/register',(req,res)=>{
     UserModel.create(req.body)
     .then(res.json('Data Saved Successfully'))
     .catch(err=>res.json(err))
-    })
-
-
+});
 
 // Create Rest API (http://localhost:8000/addProduct)
 app.post('/addProduct', async (req, res)=>{
     try {
         await ProductModel.create(req.body)
         res.json({ message: 'Product Added Successfully' })
-        console.log('Product being added:', req.body)
-
     } 
     catch(error) {
         res.json(error)
-        console.log('ERROR Product being added:', req.body)
     }
 })
 
@@ -86,14 +100,13 @@ app.delete('/deleteProduct/:id', async (req, res)=>{
     }
 })
 
-
-
 //Create API End Points (HTTP Request,Response)
 app.get('/',(req,res)=>{
-res.send('Welcome to Node JS Server')
+    res.send('Welcome to Node JS Server')
 })
+
 //config PORT and Start Server
-const PORT = process.env.PORT || 8001
+const PORT = 8000
 app.listen(PORT, ()=>{
-console.log(`Server running on port ${PORT}`)
+    console.log(`Server running on port ${PORT}`)
 })
