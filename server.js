@@ -17,7 +17,7 @@ mongoose.connect('mongodb+srv://paul:123@inventory.k4y9yky.mongodb.net/inventory
     // Create a test product to verify database operations
     try {
       const testProduct = await ProductModel.create({
-        name: "Test Product",
+        name: "Test Product1",
         quantity: 10,
         price: 9.99,
         description: "Test product to verify database connection"
