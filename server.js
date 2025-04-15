@@ -90,7 +90,7 @@ app.get('/',(req,res)=>{
 res.send('Welcome to Node JS Server')
 })
 //config PORT and Start Server
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 8001
 app.listen(PORT, ()=>{
 console.log(`Server running on port ${PORT}`)
 })
