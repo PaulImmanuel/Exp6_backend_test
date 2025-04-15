@@ -13,23 +13,6 @@ app.use(express.json())
 mongoose.connect('mongodb+srv://paul:123@inventory.k4y9yky.mongodb.net/inventory?retryWrites=true&w=majority')
   .then(async () => {
     console.log('DB connected to database:', mongoose.connection.db.databaseName);
-    
-    // Create a test product to verify database operations
-    try {
-      const testProduct = await ProductModel.create({
-        name: "Test Product1",
-        quantity: 10,
-        price: 9.99,
-        description: "Test product to verify database connection"
-      });
-      console.log('Test product created:', testProduct);
-
-      // Verify we can read the product back
-      const products = await ProductModel.find();
-      console.log('All products in database:', products);
-    } catch (err) {
-      console.log('Error creating test product:', err);
-    }
   })
   .catch(err => console.log('MongoDB connection error:', err));
 
