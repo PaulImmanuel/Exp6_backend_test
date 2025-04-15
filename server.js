@@ -28,9 +28,12 @@ app.post('/addProduct', async (req, res)=>{
     try {
         await ProductModel.create(req.body)
         res.json({ message: 'Product Added Successfully' })
+        console.log('Product being added:', req.body)
+
     } 
     catch(error) {
         res.json(error)
+        console.log('ERROR Product being added:', req.body)
     }
 })
 
