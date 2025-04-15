@@ -41,7 +41,8 @@ app.post('/register',(req,res)=>{
 });
 
 // Create Rest API (http://localhost:8000/addProduct)
-app.post('/addProduct', async (req, res)=>{
+app.post('/addProduct', async (req, res) => {
+    console.log("Incoming data from API:", req.body); // Add this line
     try {
         await ProductModel.create(req.body)
         res.json({ message: 'Product Added Successfully' })
