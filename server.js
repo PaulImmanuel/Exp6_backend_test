@@ -10,7 +10,7 @@ app.use(cors())
 app.use(express.json())
 
 // Updated connection string with explicit database name
-mongoose.connect('mongodb+srv://paul:123@ac-1joemgn.nsuyksf.mongodb.net/inventory?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://paul:123@inventory.k4y9yky.mongodb.net/inventory?retryWrites=true&w=majority')
   .then(async () => {
     console.log('DB connected to database:', mongoose.connection.db.databaseName);
     
